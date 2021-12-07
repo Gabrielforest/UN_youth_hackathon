@@ -17,45 +17,62 @@ require(pacman)
 
 pacman::p_load(leaflet, leaflet.extras, leaflet.providers, 
                leafem, htmlwidgets, dplyr, htmltools, rgdal, 
-               leafem, mapview, tmap, ggplot2)
+               leafem, mapview, tmap, ggplot2, geobr, sf, 
+               dplyr, colorspace)
 #------------------------------------------------------------------------
 
-paises <- readOGR("countries.geojson")
+brasil_estados <- read_state(year = 2010)
 
-# dados:
+# removendo colunas do nome dos estados, código da região e nome da região
+brasil_estados <- brasil_estados[, -c(1, 3, 4, 5)]
+
+
+# dados brasil/estado ministério da saúde:
+casos_br <- read.csv2("../mortalidade_ministerio_saude.csv")
+
+# merge dados de localização e covid:
+casos_covid_est <- merge(brasil_estados, 
+                         casos_br, 
+                         by.x = "abbrev_state",
+                         by.y = "estados")
 
 # logo:
 m <- "https://images.vexels.com/media/users/3/143561/isolated/preview/afa3aa927b63061e3b0222b7dab9cdbf-ubicaci--n-n--utica-norte-flecha-vintage-by-vexels.png"
 
-AA <- leaflet(paises) %>%
-  addControl(html = "<p><strong><em>Título</em></strong></p>", position ="topright")%>%
-  
+# mudar nome 
+pal <- colorBin("YlOrRd", domain = casos_covid_est$Óbitos.Acumulados.100mi, bins = c(0, 50, 100, 150, 200, 250, 300, 350, 400, 450))  
+
+# customizando
+label <- sprintf("<strong>%s</strong></br>%g Deaths",
+          casos_covid_est$abbrev_state, casos_covid_est$Óbitos.Acumulados.100mi) %>% lapply(htmltools::HTML)
+
+# mapa
+AA <- leaflet(casos_covid_est) %>%
   addLogo(m,url = "https://images.vexels.com/media/users/3/143561/isolated/preview/afa3aa927b63061e3b0222b7dab9cdbf-ubicaci--n-n--utica-norte-flecha-vintage-by-vexels.png",
           position = "topleft", offset.x = 50, offset.y = 10, width = 100, height = 100) %>%
-  
   addProviderTiles(providers$OpenStreetMap) %>%
-  
-  setView(lng = 90, lat = 10, zoom = 1) %>%
-   
+  setView(lng = -55.0, lat = -14, zoom = 4) %>%
   addLayersControl(baseGroups = c("OSM","Satellite"), 
-                   overlayGroups = c("Study Area"),
-                   position = "topright", options = layersControlOptions(collapsed = TRUE)) %>%
-  
-  addProviderTiles(providers$OpenStreetMap, group = "OSM") %>%
-  
+                   overlayGroups = c("Deaths COVID-19 per 100,000.00 hab."),
+                   position = "topright", options = layersControlOptions(collapsed = FALSE)) %>%
+  addPolygons(fillColor = ~pal(Óbitos.Acumulados.100mi),
+              weight = 2,
+              opacity = 1, dashArray = "1",
+              color = "white",
+              fillOpacity = 0.6,
+              highlight = highlightOptions(
+                weight = 5,
+                color = "#666",
+                opacity = 0.5,
+                dashArray = "",
+                fillOpacity = 0.7,
+                bringToFront = TRUE),
+              label = label, group = "Deaths COVID-19 per 100,000.00 hab.") %>%
   addProviderTiles(providers$Esri.WorldImagery, group = "Satellite") %>%
-  
+  addProviderTiles(providers$OpenStreetMap, group = "OSM") %>%
   addMiniMap(tiles = providers$Esri.WorldImagery, toggleDisplay = TRUE) 
 
-
 ### outros gráficos
-
-graph2 <- mtcars %>%
- ggplot() +
- aes(x = mpg, y = drat, colour = as.factor(gear)) +
- geom_point(shape = "circle", size = 1.5) +
- labs(x = "Miles per Galoon", colour = "gear")+
- theme_minimal()
 
 graph3 <- CO2 %>% 
   ggplot() +
@@ -68,15 +85,13 @@ graph3 <- CO2 %>%
 ```
 
 
-
-
-Título geral
+Brazil Informations
 ===================================== 
 
 Column {data-width=250}
 -----------------------------------------------------------------------
 
-### Gráfico 1
+### Deaths by COVID-19 per 100,000.000 inhabitants
 
 ```{r map}
 AA
@@ -107,7 +122,7 @@ At this report there are the main results from the Hackathon challenge with the 
 easier to spread our analysis throughout community
 about the COVID-19 impact for the SDG3 (Health & Well-Being) and SD4 (Quality Education). 
 
- 
+
 Furthermore, about 90% of countries, suffered disruption of health services (UN, 2021).
 
 Based on literature, the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. Between those most affected SDGs are the SDG3 and the SDG4 that's why we chose them.
