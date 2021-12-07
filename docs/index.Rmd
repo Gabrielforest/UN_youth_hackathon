@@ -73,27 +73,28 @@ graph3 <- CO2 %>%
 Título geral
 ===================================== 
 
-Column {data-width=600}
+Column {data-width=250}
 -----------------------------------------------------------------------
 
 ### Gráfico 1
+
 ```{r map}
 AA
 ```
 
-Column {data-width=400}
+Column {data-width=250}
 -----------------------------------------------------------------------
 
 ### Gráfico 2
 
-```{r map1}
-graph2                                                  
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("../img/online_class_xp.png")
 ```
 
 ### Gráfico 3
 
-```{r map2}
-graph3
+```{r map1, out.width="100%"}
+graph3                                                  
 ```
 
 
@@ -104,13 +105,16 @@ Information {data-orientation=rows data-icon="fa-info-circle"}
 
 At this report there are the main results from the Hackathon challenge with the objective of become 
 easier to spread our analysis throughout community
-about...
+about the COVID-19 impact for the SDG3 (Health & Well-Being) and SD4 (Quality Education). 
+
  
+Furthermore, about 90% of countries, suffered disruption of health services (UN, 2021).
+
+Based on literature, the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. Between those most affected SDGs are the SDG3 and the SDG4 that's why we chose them.
+
 \  
 
-Therefore we used the following databases:
-
-\  
+Therefore we used the following databases to find out how the impact...:
 
 * x [link]()
 
@@ -120,16 +124,19 @@ Therefore we used the following databases:
 
 The main variables selected to generate these analysis were:
 
-\  
-
 * w
 
 * z
 
 \   
 
-You can see all the data used during this challenge through this [link]() and the repository with the code [here]()
+You can see all the data used during this challenge through this [link](https://github.com/Gabrielforest/hackathon_/tree/main/data) and the repository with the code [here](https://github.com/Gabrielforest/hackathon_)
 
 \  
 
 ``` authors: Eloabe; Gabriel; Gustavo; Pedro; Hugo ```
+
+\blue{References:} 
+
+UN (2021) Progress towards the Sustainable Development Goals Report of the Secretary-General. Microsoft Word - SG SDG Progress report 2021 unedited
+
