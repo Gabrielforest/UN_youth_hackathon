@@ -113,17 +113,39 @@ Information {data-orientation=rows data-icon="fa-info-circle"}
 
 ### Hackathon report
 
-At this report there are some results from the Hackathon challenge with the objective of become
-easier to spread our analysis throughout community
+At this report there are some information about the situation of COVID-19 and climate for each state in Brazil with the objective of become
+easier to spread the context of our analysis throughout community from Hackathon
 about the COVID-19 impact for the SDG3 (Health & Well-Being) and SDG13 (Climate Action). 
 
-Based on literature, about 90% of countries suffered disruption of health services (UN, 2021). So the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. That's why we need to focus on action to keep getting a better world for all of us.
+Based on literature, about 90% of countries suffered disruption of health services (UN, 2021). So the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. That's why we need to focus on action to keep getting a better world for all of us. 
 
-\   
+\  
+
+Here are some actions that we can learn from the global pandemic:
+
+
+*Correlated with SDG13*
+
+* Temporary decline of CO2 emissions (cycling; reduce business travelling/air quality);
+* Home working/reduce of physical contacts;
+* Awareness raising for importance of ecosystems and responsible use of resources
+
+\  
+
+*Correlated with SDG3*
+
+* Health problems contribute to the increased poverty (social programs);
+* Inability to work due to health effect economic conditions (subsistence allowance);
+* Health problems can increase inequalities (offer opportunities);
+* Global pandemic highlighted the need for **global cooperation**
+
+\  
+
+Therefore as Mahatma Gandhi said "be the change that you wish to see in the world" through your own actions and spread awareness with your influence.
+
 
 You can see the code and the data used during this challenge through this [repository](https://github.com/Gabrielforest/hackathon_)
 
-\  
 
 ``` authors: Eloabe; Gabriel; Gustavo; Pedro; Hugo ```
 
