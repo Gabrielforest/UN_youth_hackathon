@@ -11,7 +11,6 @@ output:
 
 ```{r setup, include=FALSE}
 
-
 #------------------------------------------------------------------------
 require(pacman)
 
@@ -51,7 +50,7 @@ AA <- leaflet(casos_covid_est) %>%
   addLogo(m,url = "https://images.vexels.com/media/users/3/143561/isolated/preview/afa3aa927b63061e3b0222b7dab9cdbf-ubicaci--n-n--utica-norte-flecha-vintage-by-vexels.png",
           position = "topleft", offset.x = 50, offset.y = 10, width = 100, height = 100) %>%
   addProviderTiles(providers$OpenStreetMap) %>%
-  setView(lng = -55.0, lat = -14, zoom = 4) %>%
+  setView(lng = -57.0, lat = -14, zoom = 4) %>%
   addLayersControl(baseGroups = c("OSM","Satellite"), 
                    overlayGroups = c("Deaths COVID-19 per 100,000.00 hab."),
                    position = "topright", options = layersControlOptions(collapsed = FALSE)) %>%
@@ -67,20 +66,12 @@ AA <- leaflet(casos_covid_est) %>%
                 dashArray = "",
                 fillOpacity = 0.7,
                 bringToFront = TRUE),
-              label = label, group = "Deaths COVID-19 per 100,000.00 hab.") %>%
+              label = label, group = "Deaths by COVID-19/n per 100,000.00 hab.") %>%
+  addLegend(pal = pal, values = ~Óbitos.Acumulados.100mi, opacity = 0.7, 
+            title = "Deaths per 100,000.00 inhabitants", position = "bottomleft") %>% 
   addProviderTiles(providers$Esri.WorldImagery, group = "Satellite") %>%
   addProviderTiles(providers$OpenStreetMap, group = "OSM") %>%
   addMiniMap(tiles = providers$Esri.WorldImagery, toggleDisplay = TRUE) 
-
-### outros gráficos
-
-graph3 <- CO2 %>% 
-  ggplot() +
-  aes(x = conc, y = uptake, colour = as.factor(Treatment)) +
-  geom_point(shape = "circle", size = 1.5) +
-  labs(x = "Concentration", colour = "treatment")+
-  theme_minimal()
-
 
 ```
 
@@ -100,16 +91,20 @@ AA
 Column {data-width=250}
 -----------------------------------------------------------------------
 
-### Gráfico 2
+### Data information
+
+The data of deaths per COVID-19 per 100,000 inhabitants was taken from the portal of the Ministry of Health, you can get more details [here](https://infoms.saude.gov.br/extensions/covid-19_html/covid-19_html.html) about the data. 
+
+In relation to the pollution data these were obtained through the [IBAMA](https://dadosabertos.ibama.gov.br/dados/RAPP/emissoesPoluentesAtmosfericos/relatorio.html) report which represents the emission of carbon equivalent in 2020 per state.
+Regarding climate, despite
+a temporary reduction of emissions in 2020 due to the lock-down measures, overall in 2020,
+the Greenhouse Gases (GHG) increased around the world, so it's important to say that 
+we need to learn from this pandemic to keep a sustainable way of life going out home thinking about it.
+
+### Quantity per state of pollution
 
 ```{r echo=FALSE, out.width="100%"}
-knitr::include_graphics("../img/online_class_xp.png")
-```
-
-### Gráfico 3
-
-```{r map1, out.width="100%"}
-graph3                                                  
+knitr::include_graphics("../img/amount_per_state.png")
 ```
 
 
@@ -118,40 +113,22 @@ Information {data-orientation=rows data-icon="fa-info-circle"}
 
 ### Hackathon report
 
-At this report there are the main results from the Hackathon challenge with the objective of become 
+At this report there are some results from the Hackathon challenge with the objective of become
 easier to spread our analysis throughout community
-about the COVID-19 impact for the SDG3 (Health & Well-Being) and SD4 (Quality Education). 
+about the COVID-19 impact for the SDG3 (Health & Well-Being) and SDG13 (Climate Action). 
 
-
-Furthermore, about 90% of countries, suffered disruption of health services (UN, 2021).
-
-Based on literature, the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. Between those most affected SDGs are the SDG3 and the SDG4 that's why we chose them.
-
-\  
-
-Therefore we used the following databases to find out how the impact...:
-
-* x [link]()
-
-* y [link]()
+Based on literature, about 90% of countries, suffered disruption of health services (UN, 2021). So the things related to the consequences of this health problem for several SDGs, emphasise that due to the COVID-19 pandemic, the linkages between the most effected SDGs are intensified and their impact on other Goals is increased. That's why we need to focus on action to keep getting a better world for all os us.
 
 \   
 
-The main variables selected to generate these analysis were:
-
-* w
-
-* z
-
-\   
-
-You can see all the data used during this challenge through this [link](https://github.com/Gabrielforest/hackathon_/tree/main/data) and the repository with the code [here](https://github.com/Gabrielforest/hackathon_)
+You can see the code and the data used during this challenge through this [repository](https://github.com/Gabrielforest/hackathon_)
 
 \  
 
 ``` authors: Eloabe; Gabriel; Gustavo; Pedro; Hugo ```
 
-\blue{References:} 
+
+**References:**
 
 UN (2021) Progress towards the Sustainable Development Goals Report of the Secretary-General. Microsoft Word - SG SDG Progress report 2021 unedited
 
