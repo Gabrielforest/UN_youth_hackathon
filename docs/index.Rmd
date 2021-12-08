@@ -66,7 +66,7 @@ AA <- leaflet(casos_covid_est) %>%
                 dashArray = "",
                 fillOpacity = 0.7,
                 bringToFront = TRUE),
-              label = label, group = "Deaths by COVID-19/n per 100,000.00 hab.") %>%
+              label = label, group = "Deaths COVID-19 per 100,000.00 hab.") %>%
   addLegend(pal = pal, values = ~Óbitos.Acumulados.100mi, opacity = 0.7, 
             title = "Deaths per 100,000.00 inhabitants", position = "bottomleft") %>% 
   addProviderTiles(providers$Esri.WorldImagery, group = "Satellite") %>%
