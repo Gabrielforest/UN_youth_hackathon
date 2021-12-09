@@ -147,7 +147,7 @@ Therefore as Mahatma Gandhi said "be the change that you wish to see in the worl
 You can see the code and the data used during this challenge through this [repository](https://github.com/Gabrielforest/hackathon_)
 
 
-``` authors: Eloabe; Gabriel; Gustavo; Pedro; Hugo ```
+
 
 
 **References:**
